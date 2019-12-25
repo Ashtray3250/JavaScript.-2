@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>eShop</title>
+  <link rel="stylesheet" href="reset.css">
+  <style>
+    .header {
+      padding: 10px 20px;
+      border-bottom: 1px solid #c0c0c0;
+      margin-bottom: 40px;
+    }
+    .container {
+      max-width: 1280px;
+      padding: 0 20px;
+      display: flex;
+      margin: 0 auto;
+    }
+    .header .container {
+      position: relative;
+    }
+    .cart-button {
+      -webkit-appearance: none;
+      border: none;
+      background-color: #46a5fc;
+      color: #fff;
+      border-radius: 4px;
+      padding: 5px 10px;
+      margin-left: auto;
+    }
+    .goods-list {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .goods-item {
+      padding: 20px;
+      margin-left: 20px;
+      margin-bottom: 20px;
+      width: calc(100% / 3 - 60px);
+      background-color: #f1f1f1;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .goods-title {
+      margin-bottom: 20px;
+    }
+    .cart-container {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 15px);
+      width: 220px;
+      height: 100px;
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    }
+    .not-found-items {
+      text-align: center;
+    }
+
+    .buy1 {
+      padding: 20px;
+      margin-left: 319px;
+      margin-bottom: 20px;
+      width: 100px;
+      background-color: #f1f1f1;
+    }
+
+    .buy2 {
+      padding: 20px;
+      margin-left: 323px;
+      margin-bottom: 20px;
+      width: 100px;
+      background-color: #f1f1f1;
+    }
+
+  </style>
+</head>
+<body>
+<div id="app">
+  <header class="header">
+    <div class="container">
+      <form class="search-form" @submit.prevent>
+        <input type="text" class="search-input" v-model.trim="searchLine"/>
+      </form>
+      <button class="cart-button" @click="toggleCartVisibility">Корзина</button>
+      <div class="cart-container" v-if="isVisibleCart">
+
+      </div>
+    </div>
+  </header>
+  <main>
+    <goods-list :goods="filteredGoods"></goods-list>
+    <button class="buy1">Купить</button>
+    <button class="buy2">Купить</button>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
