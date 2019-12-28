@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>eShop</title>
+  <link rel="stylesheet" href="reset.css">
+  <style>
+    .header {
+      padding: 10px 20px;
+      border-bottom: 1px solid #c0c0c0;
+      margin-bottom: 40px;
+    }
+    .container {
+      max-width: 1280px;
+      padding: 0 20px;
+      display: flex;
+      margin: 0 auto;
+    }
+    .header .container {
+      position: relative;
+    }
+    .cart-button {
+      -webkit-appearance: none;
+      border: none;
+      background-color: #46a5fc;
+      color: #fff;
+      border-radius: 4px;
+      padding: 5px 10px;
+      margin-left: auto;
+    }
+    .goods-list {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .goods-item {
+      padding: 20px;
+      margin-left: 20px;
+      margin-bottom: 20px;
+      width: calc(100% / 3 - 60px);
+      background-color: #f1f1f1;
+      transition: all .3s;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .goods-title {
+      margin-bottom: 20px;
+    }
+    .cart-container {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 15px);
+      width: 220px;
+      height: 100px;
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    }
+    .not-found-items {
+      text-align: center;
+    }
+    .notification {
+      position: fixed;
+      right: 10px;
+      top: 10px;
+      min-height: 60px;
+      width: 250px;
+      padding: 15px;
+      z-index: 99;
+      box-sizing: border-box;
+      border-radius: 8px;
+      box-shadow: 4px 4px 4px rgba(0,0,0,.4);
+      background-color: #D94268;
+      color: #fff;
+    }
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to {
+      opacity: 0;
+    }
+    .search-active .goods-item {
+      background-color: #78d2ff;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <transition name="fade">
+    <div class="notification error" v-if="error && error.length">
+      {{ error }}
+    </div>
+  </transition>
+  <header class="header">
+    <div class="container">
+      <search :search-line.sync="searchLine"></search>
+      <button class="cart-button" @click="toggleCartVisibility">Корзина</button>
+      <cart ref="cart"></cart>
+    </div>
+  </header>
+  <main :class="{['search-active']: searchLine.length > 0}">
+    <goods-list :goods="filteredGoods"></goods-list>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
