@@ -1,0 +1,45 @@
+// создаем jsonpackage
+npm init -y
+//  -y  флаг -- согласие по умолчанию yes
+
+// модуль работы с датой и временем
+npm install moment --save 
+
+//  -i <=> install
+
+// модуль сервера
+npm i express
+
+npm i webpack --save-dev
+npm i webpack-cli --save-dev
+
+//  --save-dev <=> -D  // модули разработки, не идут в готовый проект production
+
+
+
+// модули для сборщика
+npm i html-loader html-webpack-plugin css-loader file-loader style-loader mini-css-extract-plugin uglifyjs-webpack-plugin optimize-css-assets-webpack-plugin copy-webpack-plugin @babel/core @babel/preset-env babel-loader url-loader -D
+
+
+//  -g глобальная установка сборщика
+npm i webpack webpack-cli -g
+
+
+// щё енесколько модулей доустановила
+// один из них (в devDependencies) позволяет определять модули, которые не должны быть встроены (not to be bundled
+npm install webpack-node-externals --save-dev
+
+// файл настройки babel
+.babelrc
+
+// файл настройки версии браузера
+.browserslistrc
+last 5 versions -- 5 последних версий каждого браузера
+
+
+// запуск упаковщика через команды в консоли
+// Смотри файл package.json. В нем заданы скрипты:  "scripts": { 'buildDev': "...", 'buildProd': "....", ....}
+// запустить Версию Production:
+    npm run buildDev
+// запустить Версию Development
+    npm run buildProd
